@@ -31,7 +31,7 @@ public class Rating {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "restaurant_id")
-	private Rating ratingRestaurant;
+	private Restaurant ratingRestaurant;
 
 	public long getId() {
 		return id;
@@ -68,12 +68,13 @@ public class Rating {
 	public void setRatingUser(User ratingUser) {
 		this.ratingUser = ratingUser;
 	}
+	
 
-	public Rating getRatingRestaurant() {
+	public Restaurant getRatingRestaurant() {
 		return ratingRestaurant;
 	}
 
-	public void setRatingRestaurant(Rating ratingRestaurant) {
+	public void setRatingRestaurant(Restaurant ratingRestaurant) {
 		this.ratingRestaurant = ratingRestaurant;
 	}
 
@@ -85,7 +86,7 @@ public class Rating {
 	}
 
 	public Rating(long id, @Size(min = 1, max = 5) int rating, String comment, User ratingUser,
-			Rating ratingRestaurant) {
+			Restaurant ratingRestaurant) {
 		super();
 		this.id = id;
 		this.rating = rating;
@@ -93,7 +94,7 @@ public class Rating {
 		this.ratingUser = ratingUser;
 		this.ratingRestaurant = ratingRestaurant;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Rating [id=" + id + ", rating=" + rating + ", comment=" + comment + "]";
