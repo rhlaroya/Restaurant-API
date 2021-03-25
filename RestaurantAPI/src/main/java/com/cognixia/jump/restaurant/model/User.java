@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public enum Role {
+		USER, ADMIN
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,8 +43,8 @@ public class User implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String email;
 	
-	@Column(columnDefinition = "boolean default false")
-	private boolean isAdmin;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	@OneToMany(mappedBy = "ratingUser", fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -91,14 +97,6 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 	
 	public Set<Rating> getUserRating() {
 		return userRating;
@@ -107,9 +105,21 @@ public class User implements Serializable {
 	public void setUserRating(Set<Rating> userRating) {
 		this.userRating = userRating;
 	}
+	
+	public Role getRole() {
+		return role;
+	}
 
-	public User(long id, String userName, String password, String firstName, String lastName, String email,
-			boolean isAdmin) {
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public User() {
+		this(0, "N/A", "N/A", "N/A", "N/A", "N/A", Role.USER);
+	}
+
+	public User(long id, String userName, String password, String firstName, String lastName, String email, Role role,
+			Set<Rating> userRating) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -117,22 +127,25 @@ public class User implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.isAdmin = isAdmin;
+		this.role = role;
+		this.userRating = userRating;
 	}
 	
-	public User() {
-		this(-1, "N/A", "N/A", "N/A", "N/A", "N/A", false);
+	public User(long id, String userName, String password, String firstName, String lastName, String email, Role role) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", isAdmin=" + isAdmin + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", userRating=" + userRating + "]";
 	}
-	
-	
-	
-	
-	
 	
 }
