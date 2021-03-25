@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.restaurant.model.Rating;
-import com.cognixia.jump.restaurant.model.Restaurant;
 import com.cognixia.jump.restaurant.repository.RatingRepository;
 
 @RestController

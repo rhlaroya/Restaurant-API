@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.Range;
 
 @Entity

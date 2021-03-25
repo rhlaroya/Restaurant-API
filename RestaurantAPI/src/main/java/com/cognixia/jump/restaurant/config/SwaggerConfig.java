@@ -25,6 +25,7 @@ public class SwaggerConfig {
 				.apiInfo( apiDetails());
 	}
 	
+	@SuppressWarnings("deprecation")
 	private ApiInfo apiDetails() {
 		return new ApiInfo("Restaurant API",
 				"JUMP Program Final Project",
