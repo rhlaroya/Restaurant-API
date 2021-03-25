@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ManyToAny;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Rating {
@@ -20,7 +21,7 @@ public class Rating {
 	@Column(name = "rating_id")
 	private long id;
 	
-	@Size(min = 1, max = 5)
+	@Range(min = 1, max = 5)
 	private int rating;
 	
 	private String comment;

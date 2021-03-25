@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.restaurant.model.Rating;
+import com.cognixia.jump.restaurant.model.Restaurant;
 import com.cognixia.jump.restaurant.repository.RatingRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class RatingController {
 
 	@Autowired
@@ -40,7 +43,7 @@ public class RatingController {
 	
 	//GET Rating by id
 	@GetMapping("ratings/{id}")
-	public Rating getRestaurant(@PathVariable long id) {
+	public Rating getRating(@PathVariable long id) {
 		Optional<Rating> optRating = repo.findById(id);
 		
 		if(optRating.isPresent()) {
@@ -56,10 +59,11 @@ public class RatingController {
 		return repo.findByRating(rating);
 	}
 	
+	
 	//UPDATE
 	//PUT Rating
 	@PutMapping("update/rating/{id}")
-	public String updateRestaurant(@RequestBody Rating rating) {
+	public String updateRating(@RequestBody Rating rating) {
 		Optional<Rating> found = repo.findById(rating.getId());
 			
 		if(found.isPresent()) {
