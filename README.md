@@ -8,6 +8,10 @@ An API created with Spring Boot. Connected to a MySQL database using JPA, Securi
 
 Create, Retreive, Update, and Delete : Restaurants, Users, and Ratings.
 
+# To Do
+- [ ] Add an image to restaurants.
+- [ ] Enable users to have a list of favorite restaurants.
+
 # Hire Me
 [![image](https://user-images.githubusercontent.com/33139928/112565217-b1b02580-8daa-11eb-9d3a-19838d47c145.png)](https://www.linkedin.com/in/regae-laroya-694187196/)
 
